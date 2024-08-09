@@ -1,0 +1,13 @@
+.photo-container {
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Center vertically */
+    gap: 20px; /* Space between photo and info */
+  }
+  
+  .user-photo {
+    /* Style your image container */
+  }
+  
+  .user-info {
+    text-align: left; /* Align text to the right */
+  }

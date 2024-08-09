@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Interface</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        .container {
+            border: 2px solid blue;
+            padding: 20px;
+            margin: 20px auto;
+            width: 500px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #output {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>User Form</h2>
+        <form id="user-form">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="photo">Photo:</label>
+                <input type="file" id="photo" name="photo" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="rank">Rank:</label>
+                <select id="rank" name="rank">
+                    <option value="First Rank">First Rank</option>
+                    <option value="Second Rank">Second Rank</option>
+                    <option value="Third Rank">Third Rank</option>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('user-form');
+        const output = document.getElementById('output');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            // Get form data
+            const name = document.getElementById('name').value;
+            const photo = document.getElementById('photo').files[0];
+            const rank = document.getElementById('rank').value;
+
+            // Generate unique ID
+            const id = '#' + Math.floor(Math.random() * 900000) + 100000;
+
+            // Create output HTML
+            const html = `
+                <div class="output-container">
+                    <div class="output-item">
+                        <h3>ID: ${id}</h3>
+                        <h3>User Name: ${name}</h3>
+                        <img src="${photo ? URL.createObjectURL(photo) : ''}" alt="User Photo" style="width: 100px; height: 100px;">
+                        <p>Rank: ${rank}</p>
+                        <h3>Congratulations!! You have secured ${rank}</h3>
+                    </div>
+                </div>
+            `;
+
+            output.innerHTML = html;
+        });
+    </script>
+</body>
+</html>
